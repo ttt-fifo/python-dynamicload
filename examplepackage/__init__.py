@@ -2,14 +2,17 @@
 """
 
 IMPORTS = """
+import examplepackage.examplemodule01 as exmodule
+from .examplemodule02 import myfunction02 as exfunct
+from examplemodule02 import MyClassTwo as ExClass
 """
 
-IMP = {}
+REGISTRY = {}
 for i in IMPORTS.split('\n'):
     if i == '':
         continue
     i = i.rstrip('\n')
-    IMP[i.split(' ')[-1]] = i
+    REGISTRY[i.split(' ')[-1]] = i
 del IMPORTS
 del i
 
@@ -18,9 +21,9 @@ def __getattr__(name):
     """
     """
     try:
-        exec(IMP[name], globals(), globals())
-        IMP[name] = eval(name)
-        return IMP[name]
+        exec(REGISTRY[name], globals(), globals())
+        REGISTRY[name] = eval(name)
+        return REGISTRY[name]
     except Exception:
         print(f'ERROR while attempting to dynamically load {name}:')
         raise
@@ -29,4 +32,4 @@ def __getattr__(name):
 def __dir__():
     """
     """
-    return IMP.keys()
+    return REGISTRY.keys()
