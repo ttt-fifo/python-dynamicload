@@ -1,6 +1,6 @@
 # Python 3.7 Dynamic Load Example
 
-How to load your code dynamycaly is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this (examples: <a href="https://stackoverflow.com/questions/951124/dynamic-loading-of-python-modules" target="blank">1</a>) and the methods for dynamic loading have developed over time with the development of the Python versions. In Python 3 the magic methods for modules were introduced and and they became even better in Python 3.7. When would you need to load dynamically your Python code?
+How to load your code dynamycaly is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this (examples: <a href="https://stackoverflow.com/questions/951124/dynamic-loading-of-python-modules" target="_blank">1</a>, <a href="https://stackoverflow.com/questions/547829/how-to-dynamically-load-a-python-class" target="_blank">2</a>) and the methods for dynamic loading have developed over time with the development of the Python versions. In Python 3 the magic methods for modules were introduced and and they became even better in Python 3.7. When would you need to load dynamically your Python code?
 
 * Building plugins
 
