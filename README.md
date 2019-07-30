@@ -3,9 +3,68 @@
 How to load your code dynamycaly is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this and the methods for dynamic loading have developed over time with the development of the Python versions. In Python 3 the magic methods for modules were introduced and and they became even better in Python 3.7. When would you need to load dynamically your Python code?
 
 * Building plugins
+
+You can create a Python package 'plugins' with pluggable code like this:
+
+```
+.
+└── plugins
+    ├── __init__.py
+    ├── plugin00001.py
+    ├── plugin00002.py
+    └── plugin00003.py
+```
+
 * Whenever your have a huge codebase, but you do not need all your code loaded in the memory all the time
+
+Imagine that the plugin count in the previous example is about 100000?
+
+```
+.
+└── plugins
+    ├── __init__.py
+    ├── plugin00001.py
+    ├── plugin00002.py
+    ├── plugin00003.py
+    ├── ...
+    └── plugin99999.py
+```
+
 * You need to choose which part of your code to be loaded during import time
+
+At the top of your Python script:
+
+... you need to use the example function 'exfunct'
+
+```
+from examplepackage import exfunct
+```
+
+... or you do not need exfunct, only ExClass
+
+```
+from examplepackage import ExClass
+```
+
 * You even may need to load choosen parts of your code during runtime
+
+Like this:
+
+```
+# import time ----
+import examplepackage
+# ----------------
+.....
+# runtime --------
+.....
+f_name = 'exfunct'
+.....
+f = getattr(examplepackage, f_name)
+somevar = f('some', 'awesome', 'args')
+# ----------------
+```
+
+* I would **love** to hear from **you** how do you use dynamic loading with Python? Do not hesitate to [put an issue](https://github.com/ttt-fifo/python-dynamicload/issues) to initiate a disussion!
 
 ## Getting Started
 
