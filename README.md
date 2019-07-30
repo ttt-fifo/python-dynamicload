@@ -1,6 +1,6 @@
 # Python 3.7 Dynamic Load Example
 
-How to load your code dynamycaly is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this and the methods for dynamic loading have developed over time with the development of the Python versions. In Python 3 the magic methods for modules were introduced and and they became even better in Python 3.7. When would you need to load dynamically your Python code?
+How to load your code dynamycaly is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this (examples: [1](https://stackoverflow.com/questions/951124/dynamic-loading-of-python-modules){:target="_blank"}, [2](https://stackoverflow.com/questions/547829/how-to-dynamically-load-a-python-class){:target="_blank"}) and the methods for dynamic loading have developed over time with the development of the Python versions. In Python 3 the magic methods for modules were introduced and and they became even better in Python 3.7. When would you need to load dynamically your Python code?
 
 * Building plugins
 
@@ -34,13 +34,13 @@ Imagine that the plugin count in the previous example is about 100000?
 
 At the top of your Python script:
 
-... you need to use the example function 'exfunct'
+... if you need to use the example function 'exfunct'
 
 ```
 from examplepackage import exfunct
 ```
 
-... or you do not need exfunct, only ExClass
+... or if you do not need exfunct, only ExClass
 
 ```
 from examplepackage import ExClass
@@ -64,7 +64,7 @@ somevar = f('some', 'awesome', 'args')
 # ----------------
 ```
 
-* I would **love** to hear from **you** how do you use dynamic loading with Python? Do not hesitate to [put an issue](https://github.com/ttt-fifo/python-dynamicload/issues) to initiate a disussion!
+* I would **love** to hear from **you** how do you use dynamic loading with Python? Do not hesitate to [open an issue](https://github.com/ttt-fifo/python-dynamicload/issues) to initiate a disussion!
 
 ## Getting Started
 
