@@ -74,7 +74,7 @@ somevar = f('some', 'awesome', 'args')
 git clone https://github.com/ttt-fifo/python-dynamicload
 ```
 
-* Review the file python-dynamicload/examplepackage/__init__.py to see how the dynamic loading is implemented
+* Review the file ```python-dynamicload/examplepackage/__init__.py``` to see how the dynamic loading is implemented
 
 ```
 vim python-dynamicload/examplepackage/__init__.py
@@ -84,6 +84,7 @@ vim python-dynamicload/examplepackage/__init__.py
 
 ```
 cd python-dynamicload
+mkdir -p ~/.local/lib/python3.7/site-packages
 cp -r examplepackage ~/.local/lib/python3.7/site-packages 
 ```
 
