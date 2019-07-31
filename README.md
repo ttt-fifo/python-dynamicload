@@ -132,6 +132,7 @@ End with an example of getting some data out of the system or using it for a lit
 ### Proof of Concept
 
 * Go to the directory of the current recipe and open your [REPL](https://pythonprogramminglanguage.com/repl/) of choice - in my case [bpython](https://bpython-interpreter.org/)
+
 ```
 ttodorov@personal:~$ cd ~/projects/python-dynamicload/
 ttodorov@personal:~/projects/python-dynamicload$ bpython
