@@ -104,6 +104,8 @@ cd python-dynamicload
 vim examplepackage/__init__.py
 ```
 
+* Review ```examplescript_init_time.py``` and ```examplescript_runtime.py``` and take some time to play with them
+
 * Open your [REPL](https://pythonprogramminglanguage.com/repl/) of choice and play with the concepts described into the "Proof of Concept" below
 
 * Create your own package - see below "How to Create Your Own Dynamically Loaded Python Package"
