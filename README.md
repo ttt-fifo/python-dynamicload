@@ -140,7 +140,7 @@ bpython version 0.18 on top of Python 3.7.4 /home/ttodorov/opt/Python-3.7.4/bin/
 >>>
 ```
 
-* Import the example package
+* **Import the example package**
 
 ```
 >>> import examplepackage
@@ -153,7 +153,7 @@ bpython version 0.18 on top of Python 3.7.4 /home/ttodorov/opt/Python-3.7.4/bin/
 1. ```import examplepackage``` actually imports the package
 2. ```dir(examplepackage)``` shows you the list of attributes, which you could use from this package. Later on I will show that these attributes are still not loaded in memory, but could be loaded dynamically on demand.
 
-* Inspect what is loaded in memory before any dynamic loading
+* **Inspect what is loaded in memory before any dynamic loading**
 
 ```
 >>> import sys
@@ -171,7 +171,7 @@ _.py'>
 4. ```for module in [...]``` iterates through all currently loaded modules which name starts with 'example'
 5. ```print(module, ':', sys.modules[module])``` prints every module loaded in memory which name starts with 'example'. We can see that only one module is in memory and it is the ```__init__.py``` from examplepackage.
 
-* Load dynamically one class
+* **Load dynamically one class**
 
 ```
 >>> examplepackage.exampleclass
@@ -181,7 +181,7 @@ _.py'>
 
 6. Issuing ```examplepackage.exampleclass``` loads dynamically the module examplepackage.examplemodule02 in memory, then it imports dynamically MyClassTwo as examplepackage.exampleclass. Lets inspect this in the next section!
 
-* Inspect the memory after one dynamic load
+* **Inspect the memory after one dynamic load**
 
 ```
 >>> for module in [m for m in sys.modules if m.startswith('example')]:
@@ -195,7 +195,48 @@ namicload/examplepackage/examplemodule02.py'>
 >>>
 ```
 
-7. ```for module ... print ...``` now shows that the module examplepackage.examplemodule02 is now loaded in memory after the dynamic load of examplepackage.exampleclass
+7. ```for module ... print ...``` shows that the module examplepackage.examplemodule02 is now loaded in memory after the dynamic load of examplepackage.exampleclass
+
+* **More inspection by using the REGISTRY variable of the package**
+
+```
+>>> from pprint import pprint
+>>>
+>>> pprint(examplepackage.REGISTRY)
+{'exampleclass': <class 'examplepackage.examplemodule02.MyClassTwo'>,
+ 'examplefunction': 'from .examplemodule01 import myfunction01 as '
+                    'examplefunction',
+ 'examplemodule': 'from . import examplemodule01 as examplemodule'}
+>>>
+```
+
+8. ```from pprint import pprint``` just imports a helper function for pretty printing
+9. ```pprint(examplepackage.REGISTRY)``` shows the contents of the variable REGISTRY, which is a dictionary used to hold the import statements for dynamic loading and/or the current state of the actual imported code. You can see that the key 'exampleclass' is actually loaded class and the keys 'examplefunction', 'examplemodule' are still showing the import strings.
+
+* **One more dynamic load - load dynamically examplefunction**
+
+```
+>>> examplepackage.examplefunction
+<function myfunction01 at 0x7efc3b8a6830>
+>>>
+>>> for module in [m for m in sys.modules if m.startswith('example')]:
+...     print(module, ':', sys.modules[module])
+...
+...
+examplepackage : <module 'examplepackage' from '/home/ttodorov/projects/python-dynamicload/examplepackage/__init_
+_.py'>
+examplepackage.examplemodule02 : <module 'examplepackage.examplemodule02' from '/home/ttodorov/projects/python-dy
+namicload/examplepackage/examplemodule02.py'>
+examplepackage.examplemodule01 : <module 'examplepackage.examplemodule01' from '/home/ttodorov/projects/python-dy
+namicload/examplepackage/examplemodule01.py'>
+>>>
+>>> pprint(examplepackage.REGISTRY)
+{'exampleclass': <class 'examplepackage.examplemodule02.MyClassTwo'>,
+ 'examplefunction': <function myfunction01 at 0x7efc3b8a6830>,
+ 'examplemodule': 'from . import examplemodule01 as examplemodule'}
+>>> 
+```
+
 
 ## Contributing
 
