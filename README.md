@@ -146,8 +146,8 @@ bpython version 0.18 on top of Python 3.7.4 /home/ttodorov/opt/Python-3.7.4/bin/
 ['exampleclass', 'examplefunction', 'examplemodule']
 >>>
 ```
-    1. ```import examplepackage``` atually imports the package
-    2. ```dir(examplepackage)``` shows you the list of attributes, which you could use from this package. Later on I will show that these attributes are still not loaded in memory, but could be loaded dynamically on demand.
+    1. 'import examplepackage' actually imports the package
+    2. 'dir(examplepackage)' shows you the list of attributes, which you could use from this package. Later on I will show that these attributes are still not loaded in memory, but could be loaded dynamically on demand.
 
 * TODO
 
