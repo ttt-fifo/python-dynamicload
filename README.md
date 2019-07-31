@@ -112,22 +112,45 @@ Python >= 3.7
 
 ### How to Consume the Dynamically Loaded Python Package
 
-TODO: A step by step series of examples that tell you how to get a development env running
+* In case you do not know which functions, classes, modules, etc. are dynamically loadable from your package (or maybe you are a consumer, who will use the package for the first time):
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+Open your [REPL](https://pythonprogramminglanguage.com/repl/) of choice, import the package and dir() it:
 
 ```
-until finished
+>>> import examplepackage
+>>> dir(examplepackage)
+['exampleclass', 'examplefunction', 'examplemodule']
+>>>
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+* You would like to know what an attribute does?
 
+Use the help() command on one package attribute:
+
+```
+>>> help(examplepackage.examplefunction)
+Help on function myfunction01 in module examplepackage.examplemodule01:
+
+myfunction01(*arg, **kwarg)
+    This is an example dynamically loaded function.
+    Arguments: accepts everything as argument
+    Returns: True
+/tmp/tmp3auxnclb (END)
+```
+
+NOTE: the help(...) command first loads the attribute in memory, then reads the docstring of the particular attribute.
+
+* ...and if you would like to have the full help of everything:
+
+Use help(yourmodulename) - NOTE: this will load all the dynamically loadable attributes prior giving you the help, so maybe time consuming:
+
+```
+>>> help(examplepackage)
+```
+
+* In your script as a consumer you may import dynamically the needed code during import time - see example in [examplescript_import_time.py](examplescript_import_time.py)
+
+* In your script as a consumer you may dynamically import code during runtime - see example in [examplescript_runtime.py](examplescript_runtime.py)
 
 ### Proof of Concept
 
@@ -211,7 +234,7 @@ namicload/examplepackage/examplemodule02.py'>
 ```
 
 8. ```from pprint import pprint``` just imports a helper function for pretty printing
-9. ```pprint(examplepackage.REGISTRY)``` shows the contents of the variable REGISTRY, which is a dictionary used to hold the import statements for dynamic loading and/or the current state of the actual imported code. You can see that the key 'exampleclass' is actually loaded class and the keys 'examplefunction', 'examplemodule' are still showing the import strings.
+9. ```pprint(examplepackage.REGISTRY)``` shows the contents of the variable REGISTRY, which is a dictionary used to hold the import statements for dynamic loading and/or the current state of the actual imported code. You can see that the key 'exampleclass' is actually loaded class and the keys 'examplefunction', 'examplemodule' are still showing the import strings (this means they are still not dynamically imported)
 
 * **One more dynamic load - load dynamically examplefunction**
 
@@ -241,11 +264,11 @@ namicload/examplepackage/examplemodule01.py'>
 11. ```for module in [...] ... print(...)``` now shows three modules loaded in memory: ```examplepackage.___init__```, ```examplepackage.examplemodule01```, ```examplepackage.examplemodule02```
 12. ```pprint(examplepackage.REGISTRY)``` - this inspection shows that 'exampleclass' and 'examplefunction' are already dynamically imported, but 'examplemodule' is not imported, because it is showing only the import string. Actually 'examplemodule' is one interesting case, so I dedicate the next paragraph to it - see below...
 
-* **The interesting case of examplemodule***
+* **The interesting case of examplemodule**
 
-The examplemodule would be dynamically imported like this: ```from . import examplemodule01 as examplemodule```, but it is currently not imported. Is examplemodule01 already loaded in memory? *Yes*, because we already imported myfunction01 from this module, so examplemodule01 has been loaded in memory during the import of myfunction01 as examplefunction.
+The examplemodule would be dynamically imported like this: ```from . import examplemodule01 as examplemodule```, but it is currently not imported. Is examplemodule01 already loaded in memory? **Yes**, because we already imported myfunction01 from this module, so examplemodule01 has been loaded in memory during the import of myfunction01 as examplefunction.
 
-* **Load dynamically the last fraction - examplemodule***
+* **Load dynamically the last fraction - examplemodule**
 
 ```
 >>> examplepackage.examplemodule
@@ -260,8 +283,7 @@ lepackage/examplemodule01.py'>}
 ```
 
 13. ```examplepackage.examplemodule``` only imports examplepackage.examplemodule01 as examplemodule without loading anything in memory. The reason for this is that examplemodule01 was already loaded in memory.
-14. ```pprint(examplepackage.REGISTRY)``` now shows that all dynamically loaded attributes are already imported.
-
+14. ```pprint(examplepackage.REGISTRY)``` now shows that all dynamically loadable attributes are already imported.
 
 ## Contributing
 
