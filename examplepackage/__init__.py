@@ -1,7 +1,7 @@
 """
 Python Dynamic Load Recipe
 for Python >= 3.7
-See README.md for details
+See https://github.com/ttt-fifo/python-dynamicload for details
 """
 import importlib.resources
 
