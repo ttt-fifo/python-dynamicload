@@ -131,7 +131,26 @@ End with an example of getting some data out of the system or using it for a lit
 
 ### Proof of Concept
 
-TODO: REPL example
+* Go to the directory of the current recipe and open your [REPL](https://pythonprogramminglanguage.com/repl/) of choice - in my case [bpython](https://bpython-interpreter.org/)
+```
+ttodorov@personal:~$ cd ~/projects/python-dynamicload/
+ttodorov@personal:~/projects/python-dynamicload$ bpython
+bpython version 0.18 on top of Python 3.7.4 /home/ttodorov/opt/Python-3.7.4/bin/python3.7
+>>>
+```
+
+* Import the example package
+```
+>>> import examplepackage
+>>> dir(examplepackage)
+['exampleclass', 'examplefunction', 'examplemodule']
+>>>
+```
+    1. ```import examplepackage``` atually imports the package
+    2. ```dir(examplepackage)``` shows you the list of attributes, which you could use from this package. Later on I will show that these attributes are still not loaded in memory, but could be loaded dynamically on demand.
+
+* TODO
+
 
 ## Contributing
 
