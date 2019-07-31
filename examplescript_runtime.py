@@ -2,7 +2,6 @@
 """
 Example script for dynamic loading during runtime
 """
-# import sys
 from pprint import pprint
 import examplepackage
 
