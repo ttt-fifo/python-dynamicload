@@ -53,7 +53,7 @@ def __getattr__(name):
 
 def __dir__():
     """
-    Give a hint to the end user what they could import even the attributes
+    Give a hint to the end user what they could import, even the attributes
     which are still not loaded in memory.
     """
     return __all__
