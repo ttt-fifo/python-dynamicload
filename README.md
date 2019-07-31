@@ -144,16 +144,58 @@ bpython version 0.18 on top of Python 3.7.4 /home/ttodorov/opt/Python-3.7.4/bin/
 
 ```
 >>> import examplepackage
+>>>
 >>> dir(examplepackage)
 ['exampleclass', 'examplefunction', 'examplemodule']
 >>>
 ```
 
-1. 'import examplepackage' actually imports the package
-2. 'dir(examplepackage)' shows you the list of attributes, which you could use from this package. Later on I will show that these attributes are still not loaded in memory, but could be loaded dynamically on demand.
+1. ```import examplepackage``` actually imports the package
+2. ```dir(examplepackage)``` shows you the list of attributes, which you could use from this package. Later on I will show that these attributes are still not loaded in memory, but could be loaded dynamically on demand.
 
-* TODO
+* Inspect what is loaded in memory before any dynamic loading
 
+```
+>>> import sys
+>>>
+>>> for module in [m for m in sys.modules if m.startswith('example')]:
+...     print(module, ':', sys.modules[module])
+...
+...
+examplepackage : <module 'examplepackage' from '/home/ttodorov/projects/python-dynamicload/examplepackage/__init_
+_.py'>
+>>>
+```
+
+3. ```import sys``` - we need to import sys package for further inspection of sys.modules
+4. ```for module in [...]``` iterates through all currently loaded modules which name starts with 'example'
+5. ```print(module, ':', sys.modules[module])``` prints every module loaded in memory which name starts with 'example'. We can see that only one module is in memory and it is the ```__init__.py``` from examplepackage.
+
+* Load dynamically one class
+
+```
+>>> examplepackage.exampleclass
+<class 'examplepackage.examplemodule02.MyClassTwo'>
+>>>
+```
+
+6. Issuing ```examplepackage.exampleclass``` loads dynamically the module examplepackage.examplemodule02 in memory, then it imports dynamically MyClassTwo as examplepackage.exampleclass. Lets inspect this in the next section!
+
+* Inspect the memory after one dynamic load
+
+```
+>>> for module in [m for m in sys.modules if m.startswith('example')]:
+...     print(module, ':', sys.modules[module])
+...
+...
+examplepackage : <module 'examplepackage' from '/home/ttodorov/projects/python-dynamicload/examplepackage/__init_
+_.py'>
+examplepackage.examplemodule02 : <module 'examplepackage.examplemodule02' from '/home/ttodorov/projects/python-dy
+namicload/examplepackage/examplemodule02.py'>
+>>>
+```
+
+7. ```for module ... print ...``` now shows that the module examplepackage.examplemodule02 is now loaded in memory after the dynamic load of examplepackage.exampleclass
 
 ## Contributing
 
