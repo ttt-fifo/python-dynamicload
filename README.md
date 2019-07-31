@@ -8,6 +8,8 @@ How to load your code dynamycally is one commonly discussed topic for Python. Th
 
 * IMPORTS string is human readable and showing what you schedule for dynamic imports
 
+* Quick and dirty inspection of the package behaviour using the REGISTRY dictionary
+
 * The code for parsing REGISTRY dictionary is clear and many other methods of parsing may be implemented instead to suit your needs for dynamic loading
 
 * The documentation (current README) is aiming to be comprehensive for the needs of dynamic loading
@@ -90,23 +92,21 @@ See [examplescript_runtime.py](examplescript_runtime.py)
 git clone https://github.com/ttt-fifo/python-dynamicload
 ```
 
-* Review the file ```python-dynamicload/examplepackage/__init__.py``` to see how the dynamic loading is implemented
-
-```
-vim python-dynamicload/examplepackage/__init__.py
-```
-
-* Copy the examplepackage/ directory into one of your [Python site packages directories](https://docs.python.org/3/library/site.html). For a linux system this would do the trick:
+* CWD to the local dyrectory of the cloned repo:
 
 ```
 cd python-dynamicload
-mkdir -p ~/.local/lib/python3.7/site-packages
-cp -r examplepackage ~/.local/lib/python3.7/site-packages 
+```
+
+* Review the file ```examplepackage/__init__.py``` to see how the dynamic loading is implemented
+
+```
+vim examplepackage/__init__.py
 ```
 
 * Open your [REPL](https://pythonprogramminglanguage.com/repl/) of choice and play with the concepts described into the "Proof of Concept" below
 
-* Now you would be ready to create your own package - see below "How to Create Your Own Dynamically Loaded Python Package"
+* Create your own package - see below "How to Create Your Own Dynamically Loaded Python Package"
 
 ### Prerequisites
 
