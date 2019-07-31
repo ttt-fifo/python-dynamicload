@@ -1,6 +1,6 @@
 # Python 3.7 Dynamic Load Recipe
 
-How to load your code dynamycaly is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this (examples: [1](https://stackoverflow.com/questions/951124/dynamic-loading-of-python-modules), [2](https://stackoverflow.com/questions/547829/how-to-dynamically-load-a-python-class)) and the methods for dynamic loading have developed over time together with the development of the Python versions. In [PEP562](https://www.python.org/dev/peps/pep-0562/) something I call "magic methods for modules" was introduced and and they [were implemented in Python 3.7](https://docs.python.org/3/whatsnew/3.7.html#whatsnew37-pep562). The [current implementation](examplepackage/__init__.py) of the dynamic loading is using exactly these Python 3.7 features. The goals of dynamic loading are: less memory footprint, choosing which parts of your code to be loaded during import time and during runtime.
+How to load your code dynamycally is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this (examples: [1](https://stackoverflow.com/questions/951124/dynamic-loading-of-python-modules), [2](https://stackoverflow.com/questions/547829/how-to-dynamically-load-a-python-class)) and the methods for dynamic loading have developed over time together with the development of the Python versions. In [PEP562](https://www.python.org/dev/peps/pep-0562/) something I call "magic methods for modules" was introduced and and they [were implemented in Python 3.7](https://docs.python.org/3/whatsnew/3.7.html#whatsnew37-pep562). The [current implementation](examplepackage/__init__.py) of the dynamic loading is using exactly these Python 3.7 features. The goals of dynamic loading are: less memory footprint, choosing which parts of your code to be loaded during import time and during runtime.
 
 ## Use Cases
 
@@ -142,10 +142,13 @@ NOTE: the help(...) command first loads the attribute in memory, then reads the 
 
 * ...and if you would like to have the full help of everything:
 
-Use help(yourmodulename) - NOTE: this will load all the dynamically loadable attributes prior giving you the help, so maybe time consuming:
+Use help(yourpackagename) - NOTE: this will load all the dynamically loadable attributes prior giving you the help, so maybe time consuming:
 
 ```
 >>> help(examplepackage)
+.................
+.................
+.................
 ```
 
 * In your script as a consumer you may import dynamically the needed code during import time - see example in [examplescript_import_time.py](examplescript_import_time.py)
@@ -287,13 +290,17 @@ lepackage/examplemodule01.py'>}
 
 ## Contributing
 
-TODO:
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+* Having comments, ideas, something unclear? - do not hesitate to open an [issue](https://github.com/ttt-fifo/python-dynamicload/issues) and initiate a discussion
+
+* Are you using this code and for what? - [issue](https://github.com/ttt-fifo/python-dynamicload/issues)
+
+* Having issues with this code? - guest what? - open an [issue](https://github.com/ttt-fifo/python-dynamicload/issues) :-) :-)
+
+Any other ways of contribution are welcomed.
 
 ## Versioning
 
-TODO:
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+See the [tags on this repository](https://github.com/ttt-fifo/python-dynamicload/tags). 
 
 ## Authors
 
@@ -305,10 +312,16 @@ Feel free to use at your own will - see the [LICENSE.md](LICENSE.md) file for de
 
 ## Acknowledgments
 
-TODO:
+* Special thanks to [Guido van Rossum](https://gvanrossum.github.io/) for being around and for inventing [this](https://python.org) enormously complex piece of software, which makes our lifes easier on a daily basis.
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Thanks to all the people working on the idea and implementation of [PEP562](https://www.python.org/dev/peps/pep-0562/)
 
+* Thanks to [Geir Arne Hjelle](https://realpython.com/team/gahjelle/) for the [inspiration](https://realpython.com/python37-new-features/)
 
+## See Also
+
+There are other people (smarter than me) doing similar things out there:
+
+Plugin system using the same approach: [https://realpython.com/python37-new-features/](https://realpython.com/python37-new-features/)
+
+Blog for dynamic import in python3 here: [https://www.bnmetrics.com/blog/dynamic-import-in-python3](https://www.bnmetrics.com/blog/dynamic-import-in-python3)
