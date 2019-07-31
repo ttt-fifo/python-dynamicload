@@ -2,8 +2,8 @@
 This is an example python module demonstrating python dynamic load
 """
 
-def myfunction02():
-    return False
-
 class MyClassTwo:
+    """
+    This is an example python class for dynamic loading
+    """
     pass

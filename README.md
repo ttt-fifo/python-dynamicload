@@ -1,12 +1,12 @@
 # Python 3.7 Dynamic Load Recipe
 
-How to load your code dynamycaly is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this ([1](https://stackoverflow.com/questions/951124/dynamic-loading-of-python-modules), [2](https://stackoverflow.com/questions/547829/how-to-dynamically-load-a-python-class)) and the methods for dynamic loading have developed over time together with the development of the Python versions. In [PEP562](https://www.python.org/dev/peps/pep-0562/) something I call "magic methods for modules" was introduced and and they [were implemented in Python 3.7](https://docs.python.org/3/whatsnew/3.7.html#whatsnew37-pep562). The [current implementation](examplepackage/__init__.py) of the dynamic loading is using exactly these Python 3.7 features. The goals of dynamic loading are: less memory footprint, choosing which code to be loaded during import time and during runtime.
+How to load your code dynamycaly is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this (examples: [1](https://stackoverflow.com/questions/951124/dynamic-loading-of-python-modules), [2](https://stackoverflow.com/questions/547829/how-to-dynamically-load-a-python-class)) and the methods for dynamic loading have developed over time together with the development of the Python versions. In [PEP562](https://www.python.org/dev/peps/pep-0562/) something I call "magic methods for modules" was introduced and and they [were implemented in Python 3.7](https://docs.python.org/3/whatsnew/3.7.html#whatsnew37-pep562). The [current implementation](examplepackage/__init__.py) of the dynamic loading is using exactly these Python 3.7 features. The goals of dynamic loading are: less memory footprint, choosing which parts of your code to be loaded during import time and during runtime.
 
 ## Use Cases
 
 * Building a plugin system
 
-You can create a Python package 'plugins' with pluggable code like this:
+You can create a [Python package](https://realpython.com/python-modules-packages/) 'plugins' with pluggable code like this:
 
 ```
 .
@@ -19,7 +19,7 @@ You can create a Python package 'plugins' with pluggable code like this:
 
 * Whenever your have a huge codebase, but you do not need all your code loaded in the memory all the time
 
-Imagine that the plugin count in the previous example is about 100000?
+Imagine that the plugin count in the previous example is about 100 000?
 
 ```
 .
