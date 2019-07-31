@@ -131,7 +131,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ### Proof of Concept
 
-* Go to the directory of the current recipe and open your [REPL](https://pythonprogramminglanguage.com/repl/) of choice - in my case [bpython](https://bpython-interpreter.org/)
+* **Go to the directory of the current recipe and open your [REPL](https://pythonprogramminglanguage.com/repl/) of choice - in my case [bpython](https://bpython-interpreter.org/)**
 
 ```
 ttodorov@personal:~$ cd ~/projects/python-dynamicload/
@@ -236,6 +236,31 @@ namicload/examplepackage/examplemodule01.py'>
  'examplemodule': 'from . import examplemodule01 as examplemodule'}
 >>> 
 ```
+
+10. ```examplepackage.examplefunction``` loads in memory the module examplepackage.examplemodule01 and afterwards imports examplepackage.examplemodule01.myfunction01 as examplefunction. Lets inspect this - see the following bulletpoints:
+11. ```for module in [...] ... print(...)``` now shows three modules loaded in memory: ```examplepackage.___init__```, ```examplepackage.examplemodule01```, ```examplepackage.examplemodule02```
+12. ```pprint(examplepackage.REGISTRY)``` - this inspection shows that 'exampleclass' and 'examplefunction' are already dynamically imported, but 'examplemodule' is not imported, because it is showing only the import string. Actually 'examplemodule' is one interesting case, so I dedicate the next paragraph to it - see below...
+
+* **The interesting case of examplemodule***
+
+The examplemodule would be dynamically imported like this: ```from . import examplemodule01 as examplemodule```, but it is currently not imported. Is examplemodule01 already loaded in memory? *Yes*, because we already imported myfunction01 from this module, so examplemodule01 has been loaded in memory during the import of myfunction01 as examplefunction.
+
+* **Load dynamically the last fraction - examplemodule***
+
+```
+>>> examplepackage.examplemodule
+<module 'examplepackage.examplemodule01' from '/home/ttodorov/projects/python-dynamicload/examplepackage/examplem
+odule01.py'>
+>>> pprint(examplepackage.REGISTRY)
+{'exampleclass': <class 'examplepackage.examplemodule02.MyClassTwo'>,
+ 'examplefunction': <function myfunction01 at 0x7efc3b8a6830>,
+ 'examplemodule': <module 'examplepackage.examplemodule01' from '/home/ttodorov/projects/python-dynamicload/examp
+lepackage/examplemodule01.py'>}
+>>>
+```
+
+13. ```examplepackage.examplemodule``` only imports examplepackage.examplemodule01 as examplemodule without loading anything in memory. The reason for this is that examplemodule01 was already loaded in memory.
+14. ```pprint(examplepackage.REGISTRY)``` now shows that all dynamically loaded attributes are already imported.
 
 
 ## Contributing
