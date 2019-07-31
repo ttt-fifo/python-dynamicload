@@ -1,6 +1,8 @@
-# Python 3.7 Dynamic Load Example
+# Python 3.7 Dynamic Load Recipe
 
-How to load your code dynamycaly is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this (examples: <a href="https://stackoverflow.com/questions/951124/dynamic-loading-of-python-modules" target="_blank">1</a>, <a href="https://stackoverflow.com/questions/547829/how-to-dynamically-load-a-python-class" target="_blank">2</a>) and the methods for dynamic loading have developed over time together with the development of the Python versions. In [PEP562](https://www.python.org/dev/peps/pep-0562/) the "magic methods for modules" were introduced and and they <a href="https://docs.python.org/3/whatsnew/3.7.html#whatsnew37-pep562" target="_blank">became true in Python 3.7</a>. The [current implementation](examplepackage/__init__.py) of the dynamic loading is using exactly these Python 3.7 features. Why and when would you need to load your Python code dynamically?
+How to load your code dynamycaly is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this ([1](https://stackoverflow.com/questions/951124/dynamic-loading-of-python-modules), [2](https://stackoverflow.com/questions/547829/how-to-dynamically-load-a-python-class)) and the methods for dynamic loading have developed over time together with the development of the Python versions. In [PEP562](https://www.python.org/dev/peps/pep-0562/) something I call "magic methods for modules" was introduced and and they [were implemented in Python 3.7](https://docs.python.org/3/whatsnew/3.7.html#whatsnew37-pep562). The [current implementation](examplepackage/__init__.py) of the dynamic loading is using exactly these Python 3.7 features. The goals of dynamic loading are: less memory footprint, choosing which code to be loaded during import time and during runtime.
+
+## Use Cases
 
 * Building a plugin system
 
@@ -30,7 +32,7 @@ Imagine that the plugin count in the previous example is about 100000?
     └── plugin99999.py
 ```
 
-* You need to choose which part of your code to be loaded during import time
+* You may need to choose which part of your code to be loaded during import time
 
 At the top of your Python script:
 
@@ -64,7 +66,7 @@ somevar = f('some', 'awesome', 'args')
 # ----------------
 ```
 
-* I would **love** to hear from **you** how do you use dynamic loading with Python? Do not hesitate to [open an issue](https://github.com/ttt-fifo/python-dynamicload/issues) to initiate a disussion!
+* I would **love** to hear from **you** what are your use cases for using dynamic loading with Python? Do not hesitate to [open an issue](https://github.com/ttt-fifo/python-dynamicload/issues) to initiate a disussion!
 
 ## Getting Started
 
@@ -90,31 +92,25 @@ cp -r examplepackage ~/.local/lib/python3.7/site-packages
 
 * Open your [REPL](https://pythonprogramminglanguage.com/repl/) of choice and play with the concepts described into the "Proof of Concept" below
 
-* Now you would be ready to create your own package - see below "How to Create Your Own Dynamic Loaded Python Package"
+* Now you would be ready to create your own package - see below "How to Create Your Own Dynamically Loaded Python Package"
 
 ### Prerequisites
 
 Python >= 3.7
 
-### How to Create Your Own Dynamic Loaded Python Package
+### How to Create Your Own Dynamically Loaded Python Package
 
-TODO: A step by step series of examples that tell you how to get a development env running
+* Develop your own [Python package](https://realpython.com/python-modules-packages/)
+    - Spread the code inside the package into multiple modules
+    - Every module to contain code, independent from the other modules
 
-Say what the step will be
+* Copy the ```examplepackage/__init__.py``` as the ```__init__.py``` for your module
 
-```
-Give the example
-```
+* Put your dynamic imports into the IMPORTS string of ```__init__.py```
+    - Every import should end with '... as somename' in order the parser to work properly
+    - Example: ```from .mymodule import somefunction as someothername```
 
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-### How to Consume the Dynamic Loaded Python Package
+### How to Consume the Dynamically Loaded Python Package
 
 TODO: A step by step series of examples that tell you how to get a development env running
 
