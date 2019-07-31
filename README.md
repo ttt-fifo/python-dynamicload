@@ -1,6 +1,6 @@
 # Python >= 3.7 Dynamic Load Recipe
 
-How to load your code dynamycally is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this (examples: [1](https://stackoverflow.com/questions/951124/dynamic-loading-of-python-modules), [2](https://stackoverflow.com/questions/547829/how-to-dynamically-load-a-python-class)) and the methods for dynamic loading have developed over time together with the development of the Python versions. In [PEP562](https://www.python.org/dev/peps/pep-0562/) something I call "magic methods for modules" was introduced and and they [were implemented in Python 3.7](https://docs.python.org/3/whatsnew/3.7.html#whatsnew37-pep562). The [current implementation](examplepackage/__init__.py) of the dynamic loading is using exactly these Python 3.7 features.
+How to load your code dynamically is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this (examples: [1](https://stackoverflow.com/questions/951124/dynamic-loading-of-python-modules), [2](https://stackoverflow.com/questions/547829/how-to-dynamically-load-a-python-class)) and the methods for dynamic loading have developed over time together with the development of the Python versions. In [PEP562](https://www.python.org/dev/peps/pep-0562/) something I call "magic methods for modules" was introduced and they [were implemented in Python 3.7](https://docs.python.org/3/whatsnew/3.7.html#whatsnew37-pep562). The [current implementation](examplepackage/__init__.py) of the dynamic loading is using exactly these Python 3.7 features.
 
 ## Features
 
@@ -8,7 +8,7 @@ How to load your code dynamycally is one commonly discussed topic for Python. Th
 
 * IMPORTS string is human readable and showing what you schedule for dynamic imports
 
-* Quick and dirty inspection of the package behaviour using the REGISTRY dictionary
+* Quick and dirty inspection of the package behavior using the REGISTRY dictionary
 
 * The code for parsing REGISTRY dictionary is clear and many other methods of parsing may be implemented instead to suit your needs for dynamic loading
 
@@ -62,7 +62,7 @@ from examplepackage import ExClass
 
 See [examplescript_import_time.py](examplescript_import_time.py)
 
-* You may even need to load choosen parts of your code during runtime
+* You may even need to load chosen parts of your code during runtime
 
 Like this:
 
@@ -82,7 +82,7 @@ somevar = f('some', 'awesome', 'args')
 
 See [examplescript_runtime.py](examplescript_runtime.py)
 
-* I would **love** to hear from **you** what are your use cases for using dynamic loading with Python? Do not hesitate to [open an issue](https://github.com/ttt-fifo/python-dynamicload/issues) to initiate a disussion!
+* I would **love** to hear from **you** what are your use cases for using dynamic loading with Python? Do not hesitate to [open an issue](https://github.com/ttt-fifo/python-dynamicload/issues) to initiate a discussion!
 
 ## Getting Started
 
@@ -92,7 +92,7 @@ See [examplescript_runtime.py](examplescript_runtime.py)
 git clone https://github.com/ttt-fifo/python-dynamicload
 ```
 
-* CWD to the local dyrectory of the cloned repo:
+* CWD to the local directory of the cloned repo:
 
 ```
 cd python-dynamicload
@@ -328,7 +328,7 @@ Feel free to use at your own will - see the [LICENSE.md](LICENSE.md) file for de
 
 ## Acknowledgments
 
-* Special thanks to [Guido van Rossum](https://gvanrossum.github.io/) for being around and for inventing [this](https://python.org) enormously complex piece of software, which makes our lifes easier on a daily basis.
+* Special thanks to [Guido van Rossum](https://gvanrossum.github.io/) for being around and for inventing [this](https://python.org) enormously complex piece of software, which makes our life easier on a daily basis.
 
 * Thanks to all the people working on the idea and implementation of [PEP562](https://www.python.org/dev/peps/pep-0562/)
 
