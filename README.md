@@ -1,6 +1,16 @@
 # Python 3.7 Dynamic Load Recipe
 
-How to load your code dynamycally is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this (examples: [1](https://stackoverflow.com/questions/951124/dynamic-loading-of-python-modules), [2](https://stackoverflow.com/questions/547829/how-to-dynamically-load-a-python-class)) and the methods for dynamic loading have developed over time together with the development of the Python versions. In [PEP562](https://www.python.org/dev/peps/pep-0562/) something I call "magic methods for modules" was introduced and and they [were implemented in Python 3.7](https://docs.python.org/3/whatsnew/3.7.html#whatsnew37-pep562). The [current implementation](examplepackage/__init__.py) of the dynamic loading is using exactly these Python 3.7 features. The goals of dynamic loading are: less memory footprint, choosing which parts of your code to be loaded during import time and during runtime.
+How to load your code dynamycally is one commonly discussed topic for Python. There are multiple stackoverflow discussions about this (examples: [1](https://stackoverflow.com/questions/951124/dynamic-loading-of-python-modules), [2](https://stackoverflow.com/questions/547829/how-to-dynamically-load-a-python-class)) and the methods for dynamic loading have developed over time together with the development of the Python versions. In [PEP562](https://www.python.org/dev/peps/pep-0562/) something I call "magic methods for modules" was introduced and and they [were implemented in Python 3.7](https://docs.python.org/3/whatsnew/3.7.html#whatsnew37-pep562). The [current implementation](examplepackage/__init__.py) of the dynamic loading is using exactly these Python 3.7 features.
+
+## Features
+
+* Easy implementation - just copy ```__init__.py``` to the root of your package and change IMPORTS string
+
+* IMPORTS string is human readable and showing what you schedule for dynamic imports
+
+* The code for parsing REGISTRY dictionary is clear and many other methods of parsing may be implemented to suit your needs for dynamic loading
+
+* The documentation (current README) is aiming to be comprehensive for the needs of dynamic loading
 
 ## Use Cases
 
@@ -294,7 +304,7 @@ lepackage/examplemodule01.py'>}
 
 * Are you using this code and for what? - [issue](https://github.com/ttt-fifo/python-dynamicload/issues)
 
-* Having issues with this code? - guest what? - open an [issue](https://github.com/ttt-fifo/python-dynamicload/issues) :-) :-)
+* Having issues with this code? - guess what? - open an [issue](https://github.com/ttt-fifo/python-dynamicload/issues) :-) :-)
 
 Any other ways of contribution are welcomed.
 
